@@ -3,6 +3,26 @@ from pythtb.utils import levi_civita, finite_diff_coeffs
 import numpy as np
 
 def fin_diff(U_k, mu, dk_mu, order_eps, mode='central'):
+    """Finite difference derivative of U_k along direction mu.
+
+    Parameters
+    ----------
+    U_k : np.ndarray
+        The array to differentiate.
+    mu : int
+        The axis along which to differentiate.
+    dk_mu : float
+        The spacing in the k-space along direction mu.
+    order_eps : int
+        The order of the finite difference approximation.
+    mode : str, optional
+        The finite difference mode ('central', 'forward', 'backward'), by default 'central'
+
+    Returns
+    -------
+    np.ndarray
+        The finite difference derivative of U_k along direction mu.
+    """
     coeffs, stencil = finite_diff_coeffs(order=order_eps, mode=mode)
 
     fd_sum = np.zeros_like(U_k)
@@ -142,7 +162,7 @@ def axion_angle_3form(
         # Diagonal matrix Sigma from singular values
         eye_trial = np.eye(V.shape[-1], dtype=complex)
         Sigma = np.einsum("...i,ij->...ij", D, eye_trial)   # (..., n_trial, n_trial)
-        print("Min singular value of S_occ:", np.min(D))
+        # print("Min singular value of S_occ:", np.min(D))
 
         U_SVD = W @ Vh  # Unitary part of SVD
         P = V @ Sigma @ Vh  # Semi-positive definite Hermitian part
