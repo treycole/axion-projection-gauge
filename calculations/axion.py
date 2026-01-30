@@ -44,8 +44,6 @@ def axion_angle_3form(
     ):
         r"""Compute the axion angle from the Berry curvature.
 
-        .. versionadded:: 2.0.0
-
         The axion angle is a topological invariant in three-dimensional insulators,
         related to the magnetoelectric response. It is defined as 
 
